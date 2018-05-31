@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_668824_gnfpgq6i83680k9.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+            text-align: center;
+        }
+        body {
+            background: linear-gradient(to right top, rgba(38,50,105,0.78), rgba(255, 251, 0, 0.089)), url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527221790115&di=3051a15c33df017e68f3cd2057286fb5&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F763293ce06bf1e684ef0ea3da43ae5008d8564b8.jpg)
+             no-repeat center;
+            background-size: cover;
+            position: relative;
+        }
+        header.icon-76{
+            font-size: 40px;
+            color: grey;
+            float: right;
+        }
+        a {
+            color: grey;
+        }
+        .main{
+            opacity: 0;
+        }
+        .box {
+            position: absolute;
+            box-shadow: 3px 4px 4px rgba(31, 30, 30, 0.5);
+            border-radius: 10px;
+            width: 400px;
+            height: 230px;
+            background: white;
+            top: calc(50% - 100px);
+            left: calc(50% - 200px);
+        }
+        input {
+            height: 30px;
+            width: 240px;
+            margin: 10px;
+            padding-left: 40px;
+        }
+        div.box>form>.iconfont {
+            position: relative;
+            left: 40px;
+        }
+        .logsign span ,
+        .regsign span{
+            display: inline-block;
+            margin: 10px 20px;
+            font-size: 18px;
+        }
+        button {
+            padding: 5px 10px;
+            border: 1px solid rgba(128, 128, 128, 0.63);
+            box-shadow: 0 0 1px rgba(128, 128, 128, 0.63);
+        }
+        .box.register {
+            width: 400px;
+            height: 280px;
+            background: white;
+            top: calc(50% - 100px);
+            left: calc(50% - 200px);
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            transition: all 1s;
+        }
+        .box.login {
+            backface-visibility: hidden;
+            transition: all 1s;
+        }
+        .cancel {
+            position: absolute;
+            text-decoration: none;
+            right: 10px;
+            color: black;
+            font-size: 20px;
+        }
+        .logsign {
+            font-size: 18px;
+        }
+        .login .alogin {
+            border-bottom: 2px solid black;
+            color: black;
+        }
+        .register .aregister {
+            border-bottom: 2px solid black;
+            color: black;
+        }
+        .rotate {
+            transform: rotateY(180deg);
+            transition: all 1s;
+        }
+        .box.register.rotate {
+            transform: rotateY(0deg);
+            transition: all 1s;
+        }
+        [type=text] {
+            margin-top: 20px;
+        }
+        p {
+            margin: 0;
+            color: red; 
+        }
+    </style>
+</head>
+<body>
+    <a href="#"><header class="iconfont icon-76"></header></a> 
+    <div class="main">
+        <div class="box register rotatereg">
+            <form action="https://easy-mock.com/mock/5b0942b15c37757453191eac/getType" method="get">
+                <a  class="cancel" href=""><span class="iconfont icon-cancel "></span></a> 
+                <div class="regsign"><a href="#" class="alogin"><span>登录</span></a><a href="#" class="aregister"><span>注册</span></a></div>
+                <p class="regerro"></p>
+                <span class="icon-denglu iconfont"></span><input type="text" placeholder="请输入用户名"><br>
+                <span class="icon-lock iconfont"></span><input type="password" placeholder="输入密码"><br>
+                <span class="icon-lock iconfont"></span><input type="password" placeholder="再次输入密码"><br>
+                <button type="submit">注册</button>
+            </form>    
+        </div>
+        <div class="box login">
+            <form action="https://easy-mock.com/mock/5b0942b15c37757453191eac/getType" method="get">
+                <a  class="cancel" href="#"><span class="iconfont icon-cancel "></span></a> 
+                <div class="logsign"><a href="#" class="alogin"><span >登录</span></a><a href="#" class="aregister"><span>注册</span></a></div>
+                <p class="logerro"></p>
+                <span class="icon-denglu iconfont"></span><input type="text" placeholder="用户名"><br>
+                <span class="icon-lock iconfont"></span><input type="password" placeholder="密码"><br>
+                <button type="submit">登录</button>
+            </form>
+        </div>
+        
+        
+    </div>
+    <script>
+    function $(x){return document.querySelector(x)}
+    function $$(x){return document.querySelectorAll(x)}
+    var main=$('.main')
+    var login = $('header')
+    var loginbox=$('.box.login')
+    var registerbox=$('.box.register')
+    var cancel=$$('.cancel')
+    cancel.forEach(function(x){ x.onclick=function(e){
+        e.stopPropagation()
+        main.style.opacity='0'
+    }})
+    login.onclick =function(e){ 
+        e.stopPropagation()
+        main.style.opacity='1'
+    }
+    var body=$('body')
+    body.onclick=function(){
+        main.style.opacity='0';
+    }
+    main.onclick=function(e){
+        e.stopPropagation()
+        main.style.opacity='1'
+    }
+    var aregister=$('.box.login .aregister')
+    var alogin=$('.box.register .alogin')
+    aregister.onclick=function(){
+        loginbox.classList.add('rotate')
+        registerbox.classList.add('rotate')
+    }
+    alogin.onclick=function(){
+        loginbox.classList.remove('rotate')
+        registerbox.classList.remove('rotate')
+    }
+    var logform=$('.box.login form')
+    logform.onsubmit=function(){
+        if(!/^\w{3,8}$/.test($$('.box.login input')[0].value)){ 
+            $('.logerro').innerText='用户名需输入3-8个字符，包括数字，字母，下划线'
+            return false       
+        }
+        if(!/^\w{6,10}$/.test($$('.box.login input')[1].value)){ 
+            $('.logerro').innerText='密码需输入6-10个字符，包括数字，字母，下划线'  
+            return false          
+        }
+        this.submit()
+
+    }
+    var regform=$('.box.register form')
+    regform.onsubmit=function(){
+        if(! /^\w{3,8}$/.test($$('.box.register input')[0].value)){ 
+            $('.regerro').innerText='用户名需输入3-8个字符，包括数字，字母，下划线'
+            console.log($$('.box.register input')[0].value)
+            return false       
+        }
+        if(!/^\w{6,10}$/.test($$('.box.register input')[1].value)){ 
+            $('.regerro').innerText='密码需输入6-10个字符，包括数字，字母，下划线'  
+            return false          
+            console.log(2)
+        }
+        if(!($$('.box.register input')[2].value == $$('.box.register input')[1].value)){ 
+            $('.regerro').innerText='两次密码不相同'   
+            return false          
+        }
+        this.submit()
+    }
+
+
+    function byField(x){
+    for(var i=0;i <users.length-1;i++){
+        (function(i){
+                var b=users[i]
+                var c=users[i+1]
+                if(users[i][x]>users[i+1][x]){ users[i]=c;users[i+1]=b
+                }
+            }
+        )(i)}
+    
+    return users
+    }
+    </script>
+</body>
+</html>
